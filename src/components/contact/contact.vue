@@ -1,4 +1,5 @@
-<template>
+
+<template>
     <div id="contact">
         <section>
             <div class="weui-cells_contact-head weui-cells weui-cells_access" style="margin-top:-1px">
@@ -30,10 +31,9 @@
             <!--联系人集合-->
             <template v-for="(value,key) in contactsList">
                 <!--首字母-->
-                <div class="weui-cells__title">{{key}}</div>
+                <div class="weui-cells__title" :ref="`key_${key}`">{{key}}</div>
                 <div class="weui-cells">
-                    <router-link :key="item.wxid" :to="{path:'/contact/details',query:{wxid:item.wxid}}" class="weui-cell weui-cell_access" v-for="item in value"
-                        tag="div">
+                    <router-link :key="item.wxid" :to="{path:'/contact/details',query:{wxid:item.wxid}}" class="weui-cell weui-cell_access" v-for="item in value" tag="div">
                         <div class="weui-cell__hd">
                             <img :src="item.headerUrl" class="home__mini-avatar___1nSrW">
                         </div>
@@ -43,39 +43,41 @@
                     </router-link>
                 </div>
             </template>
-</section>
-<!--首字母排序 后期需要实现检索功能-->
-<div class="initial-bar"><span v-for="i in contactsInitialList">{{i}}</span></div>
-</div>
+        </section>
+        <!--首字母排序 点击首字母检索联系人 后期实现滑动检索-->
+        <div class="initial-bar"><span @click="toPs(i)" v-for="i in contactsInitialList">{{i}}</span></div>
+    </div>
 </template>
 <script>
-    export default {
-        mixins: [window.mixin],
-        data() {
-            return {
-                "pageName": "通讯录"
-            }
+export default {
+    mixins: [window.mixin],
+    data() {
+        return {
+            "pageName": "通讯录"
+        }
+    },
+    mounted() {
+        // mutations.js中有介绍
+        this.$store.commit("toggleTipsStatus", -1)
+    },
+    activated() {
+        this.$store.commit("toggleTipsStatus", -1)
+    },
+    computed: {
+        contactsInitialList() {
+            return this.$store.getters.contactsInitialList
         },
-        mounted() {
-            // mutations.js中有介绍
-            this.$store.commit("toggleTipsStatus", -1)
-        },
-        activated() {
-            this.$store.commit("toggleTipsStatus", -1)
-        },
-        computed: {
-            contactsInitialList() {
-                return this.$store.getters.contactsInitialList
-            },
-            contactsList() {
-                return this.$store.getters.contactsList
-            }
-        },
-        mounted() {
-
+        contactsList() {
+            return this.$store.getters.contactsList
+        }
+    },
+    methods: {
+        toPs(i) {
+            window.scrollTo(0, this.$refs['key_' + i][0].offsetTop)
         }
     }
+}
 </script>
 <style>
-    @import "../../assets/css/contact.css";
+@import "../../assets/css/contact.css";
 </style>
