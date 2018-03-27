@@ -1,11 +1,12 @@
 <template>
     <div id="app">
         <welcome></welcome>
+        <!--通用头部-->
+        <wx-header></wx-header>
+        <!-- <header class="app-header" :class="{'header-hide':!$store.state.headerStatus}">
+            <wx-header :pageName="pageName"></wx-header>
+        </header> -->
         <div class="outter" :class="{'hideLeft':$route.path.split('/').length>2}">
-            <!--通用头部-->
-            <header class="app-header" :class="{'header-hide':!$store.state.headerStatus}">
-                <wx-header :pageName="pageName"></wx-header>
-            </header>
             <!--搜索框 只在“微信”和“通讯录”页面下显示-->
             <search v-show="$route.path.indexOf('explore')===-1&&$route.path.indexOf('self')===-1"></search>
             <!--四个门面页 “微信” “通讯录” “发现” “我”-->
@@ -76,7 +77,7 @@
     
     @import "assets/css/base.css";
     @import "assets/css/common.css";
-    @import "assets/css/wx-header.css";
+    /* @import "assets/css/wx-header.css"; */
     /*阿里 fonticon*/
     
     @import "assets/css/lib/iconfont.css";
