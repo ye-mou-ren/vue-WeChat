@@ -63,7 +63,6 @@ export default {
 #wx-header {
   position: fixed;
   z-index: 99;
-  // overflow: hidden;
   height: 45px;
   padding: 0 15px 0 10px;
   line-height: 45px;

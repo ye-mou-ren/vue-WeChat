@@ -49,38 +49,57 @@
 </div>
 </template>
 <script>
-    export default {
-        mixins: [window.mixin],
-        data() {
-            return {
-                "pageName": "通讯录"
-            }
-        },
-        mounted() {
-            // mutations.js中有介绍
-            this.$store.commit("toggleTipsStatus", -1)
-        },
-        activated() {
-            this.$store.commit("toggleTipsStatus", -1)
-        },
-        computed: {
-            contactsInitialList() {
-                return this.$store.getters.contactsInitialList
-            },
-            contactsList() {
-                return this.$store.getters.contactsList
-            }
-        },
-        mounted() {
-
-        },
-        methods: {
-            toPs(i){
-                window.scrollTo(0,this.$refs['key_'+i][0].offsetTop)
-            }
-        }
+export default {
+  mixins: [window.mixin],
+  data() {
+    return {
+      pageName: "通讯录"
+    };
+  },
+  mounted() {
+    // mutations.js中有介绍
+    this.$store.commit("toggleTipsStatus", -1);
+  },
+  activated() {
+    this.$store.commit("toggleTipsStatus", -1);
+  },
+  computed: {
+    contactsInitialList() {
+      return this.$store.getters.contactsInitialList;
+    },
+    contactsList() {
+      return this.$store.getters.contactsList;
     }
+  },
+  mounted() {},
+  methods: {
+    toPs(i) {
+      window.scrollTo(0, this.$refs["key_" + i][0].offsetTop);
+    }
+  }
+};
 </script>
-<style>
-    @import "../../assets/css/contact.css";
+<style lang="less" scoped>
+#contact {
+  img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    margin-right: 10px;
+    // border-radius: 4px;
+  }
+  .initial-bar {
+    position: fixed;
+    top: 50%;
+    font-size: 11px;
+    line-height: 1.2;
+    right: 2px;
+    width: 10px;
+    transform: translate3d(0, -50%, 0);
+    span {
+      display: block;
+      text-align: left;
+    }
+  }
+}
 </style>
