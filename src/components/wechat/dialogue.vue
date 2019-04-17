@@ -14,7 +14,7 @@
       </div>
     </header>
     <section class="dialogue-section clearfix" v-on:click="MenuOutsideClick">
-      <div class="row clearfix" v-for="item in msgInfo.msg" :key="item">
+      <div class="row clearfix" v-for="(item, index) in msgInfo.msg" :key="index">
         <img :src="item.headerUrl" class="header">
         <p class="text" v-more>{{item.text}}</p>
       </div>

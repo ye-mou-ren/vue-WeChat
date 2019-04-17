@@ -1,8 +1,8 @@
 {
   "name": "vue-wechat",
   "version": "1.0.0",
-  "description": "一款基于Vue2.0高仿微信app的单页应用/An imitation of WeChat based on the Vue2.0.js",
-  "author": "zhaohaodang@gmail.com",
+  "description": "一款基于Vue2.0高仿微信app的单页应用",
+  "author": "ycq",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
