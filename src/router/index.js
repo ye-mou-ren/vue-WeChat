@@ -22,6 +22,27 @@ const groupChatList = resolve =>
 const newFriends = resolve =>
   require(["../components/contact/new-friends.vue"], resolve) // 新的朋友页面
 const tags = resolve => require(["../components/contact/tags.vue"], resolve) // 标签页面
+const found = resolve => require(["../components/explore/explore.vue"], resolve) // 发现
+const friendsCircle = resolve =>
+  require(["../components/explore/moments.vue"], resolve) // 朋友圈页面
+const self = resolve => require(["../components/self/self.vue"], resolve) // 我页面
+const album = resolve => require(["../components/common/album.vue"], resolve) // 相册页面
+const selfSetting = resolve =>
+  require(["../components/self/settings.vue"], resolve) // 设置页面
+const setSecurity = resolve =>
+  require(["../components/self/settings/security.vue"], resolve) // 设置-账户与安全页面
+const setNotice = resolve =>
+  require(["../components/self/settings/notice.vue"], resolve) // 设置-新消息通知页面
+const setPrivacy = resolve =>
+  require(["../components/self/settings/privacy.vue"], resolve) // 设置-隐私页面
+const setCommon = resolve =>
+  require(["../components/self/settings/common.vue"], resolve) // 设置-通用页面
+const selfProfile = resolve =>
+  require(["../components/common/profile.vue"], resolve) // 我的-个人信息页面
+const selfCode = resolve =>
+  require(["../components/self/my-qrcode.vue"], resolve) // 我的-二维码页面
+const setLanguage = resolve =>
+  require(["../components/settings/common/language.vue"], resolve) // 设置语言页面
 Vue.use(Router)
 //app整体由店面页和店内页组成 暂时并没有用到嵌套路由
 const routes = [
@@ -123,77 +144,70 @@ const routes = [
   {
     path: "/explore",
     name: "发现",
-    component: resolve =>
-      require(["../components/explore/explore.vue"], resolve)
+    component: found
   },
   {
     path: "/explore/moments",
     name: "朋友圈",
     components: {
-      default: resolve =>
-        require(["../components/explore/explore.vue"], resolve),
-      subPage: resolve =>
-        require(["../components/explore/moments.vue"], resolve)
+      default: found,
+      subPage: friendsCircle
     }
   },
   {
     path: "/self",
     name: "我",
-    component: resolve => require(["../components/self/self.vue"], resolve)
+    component: self
   },
   {
     path: "/self/album",
     components: {
-      default: resolve => require(["../components/self/self.vue"], resolve),
-      subPage: resolve => require(["../components/common/album.vue"], resolve)
+      default: self,
+      subPage: album
     }
   },
   {
     path: "/self/settings",
     components: {
-      default: resolve => require(["../components/self/self.vue"], resolve),
-      subPage: resolve => require(["../components/self/settings.vue"], resolve)
+      default: self,
+      subPage: selfSetting
     }
   },
   {
     path: "/self/settings/security",
     components: {
-      subPage: resolve =>
-        require(["../components/self/settings/security.vue"], resolve)
+      subPage: setSecurity
     }
   },
   {
     path: "/self/settings/notice",
     components: {
-      subPage: resolve =>
-        require(["../components/self/settings/notice.vue"], resolve)
+      subPage: setNotice
     }
   },
   {
     path: "/self/settings/privacy",
     components: {
-      subPage: resolve =>
-        require(["../components/self/settings/privacy.vue"], resolve)
+      subPage: setPrivacy
     }
   },
   {
     path: "/self/settings/common",
     components: {
-      subPage: resolve =>
-        require(["../components/self/settings/common.vue"], resolve)
+      subPage: setCommon
     }
   },
   {
     path: "/self/profile",
     components: {
-      default: resolve => require(["../components/self/self.vue"], resolve),
-      subPage: resolve => require(["../components/common/profile.vue"], resolve)
+      default: self,
+      subPage: selfProfile
     }
   },
   {
     path: "/self/profile/my-qrcode",
     components: {
-      subPage: resolve => require(["../components/self/my-qrcode.vue"], resolve)
+      subPage: selfCode
     }
   },
   {
@@ -206,15 +220,13 @@ const routes = [
   {
     path: "/self/settings/common",
     components: {
-      subPage: resolve =>
-        require(["../components/settings/common/common.vue"], resolve)
+      subPage: setCommon
     }
   },
   {
     path: "/self/settings/common/language",
     components: {
-      subPage: resolve =>
-        require(["../components/settings/common/language.vue"], resolve)
+      subPage: setLanguage
     }
   }
 ]
